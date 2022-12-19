@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+    <script>
+        function validate()
+        {
+            var status;
+            var dob = document.myForm.birth.value;
+            var pattern = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+            if(dob.match(pattern))
+            {
+              
+                    var opera1 = dob.split('/');
+                    var opera2 = dob.split('-');
+                    lopera1 = opera1.length;
+                    lopera2 = opera2.length;
+                    var d=new Date();
+                    var yyyy=d.getFullYear();
+                    if (lopera1>1)
+                    {
+                        var pdate = dob.split('/');
+                    }
+                    else if (lopera2>1)
+                    {
+                        var pdate = dob.split('-');
+                    }
+                    var dd = parseInt(pdate[0]);
+                    var mm  = parseInt(pdate[1]);
+                    var yy = parseInt(pdate[2]);
+                      var getdate=yy+"-"+mm+"-"+dd; 
+                      var getdate=new Date(getdate);
+                    
+                    var ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+                    if (mm==1 || mm>2)
+                    {
+                        if (dd>ListofDays[mm-1])
+                        {
+                            alert('Invalid date format!');
+                            status=false;
+                        }
+                       
+                     
+                    }
+                    if (mm==2)
+                    {
+                        var lyear = false;
+                        if  ((yy % 4) && !(yy % 100) || !(yy % 400)) 
+                        {
+                            lyear = true;
+                        }
+                        if ((lyear==false) && (dd>=29))
+                        {
+                            alert('Invalid date format!');
+                            status=false;
+                        }
+                        if ((lyear==true) && (dd>29))
+                        {
+                            alert('Invalid date format!');
+                            status=false;
+                        }
+                        
+                       
+                    }
+                    
+                    if(d<getdate)
+                    {
+                        alert("Are you in future?");
+                        status=false;
+                    }
+                    return status;
+                    
+            }
+            else
+            {
+                alert("Invalid date format!");
+                dob.focus();
+                status= false;
+            }
+        
+        }
+       
+                        
+</script>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validate()" method="post">
+        BirthDate:
+        <input type="text" name="birth" placeholder="DD-MM-YYYY">
+        <br>
+        <span id="birth1"></span>
+        <button type="submit" value="Submit">Submit</button>
+
+    </form>
+</body>
+</html>
