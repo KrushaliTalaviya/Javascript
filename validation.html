@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+    <script>
+        function validate(){   
+            var name=document.myForm.fname.value;
+            var num=document.myForm.num1.value;
+            var Email = document.myForm.Em.value;
+            
+            var getSelectedValue=document.querySelector('input[name="btn"]:checked');
+            var reg=/^[A-Za-z ]+$/;
+            var regexemail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var status;
+            
+              
+            
+                if(name==""||name==null)
+                {
+                    document.getElementById("fname1").innerHTML="name cann't be blank ";
+                    status =false;
+                }   
+                else if(reg.test(name))
+                {
+                    status=true;
+                }
+                else
+                {
+                    document.getElementById("fname1").innerHTML="Enter a valid name";
+                    status=false;
+                }
+            
+           
+            if(num.length<10||num.length>12||num=="")
+            {
+                document.getElementById("num1").innerHTML="Enter a valid number";
+                status= false;
+            }else{}
+           
+            if(getSelectedValue==null)
+            {
+                status=false;
+                document.getElementById("gender1").innerHTML="please select a gender";
+            }
+            else{}
+            if(!regexemail.test(Email))
+            {
+                document.getElementById("email1").innerHTML="Enter a valid Email-Id";
+                status=false;
+            }
+            return status;
+
+        }
+    </script>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validate()" method="post">
+        Name:
+        <input type="text" name="fname">
+        <br>
+        <span id="fname1"></span>
+        <br><br>
+        Mobile No:
+        <input type="number" name="num1" >
+        <br>
+        <span id="num1"></span>
+        <br><br>
+        Gender: &nbsp;&nbsp;&nbsp;
+        <input type="radio" name="btn" value="Male">Male
+        <input type="radio" name="btn" value="Female">Female
+        <input type="radio" name="btn" value="other">Other
+        <br><span id="gender1"></span><br><br>
+        Email: 
+        <input type="text" name="Em" value="">
+        <br><span id="email1" ></span>
+        <br><br>
+        <button type="submit" value="Submit" onclick="return validate()" >Submit</button>
+        
+    </form>
+</body>
+</html>
