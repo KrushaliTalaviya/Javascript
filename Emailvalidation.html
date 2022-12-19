@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+        function validate(){
+        var Email = document.myForm.Em.value;
+       
+        var regexemail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      
+        var status;
+        
+        if(!regexemail.test(Email))
+        {
+            alert("Write a correct Email-ID");
+            status=false;
+            document.getElementById("email1").innerHTML="Enter a valid Email-Id";
+            
+        }
+     
+
+        else{
+            alert("Are u sure to want to submit");
+           staus=true;
+        }
+        
+        return status;
+    }
+    </script>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validate()" method="post" >
+      
+        Email: 
+        <input type="text" name="Em" >
+        <br><span id="email1" ></span>
+        <br><br>
+        <button type="submit" value="Submit" onclick="return validate()" >Submit</button>
+    </form>
+</body>
+</html>
